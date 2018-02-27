@@ -1,0 +1,48 @@
+body {
+	background-color: rgba(102,171,205,.35);  /*#66ABCD*/
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.no-padding-h {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.no-padding-v {
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
+.bg-full-image {
+	height: 100vh;
+	overflow: hidden;
+}
+
+#city-img {
+	background-position: bottom;
+	background-size: cover;
+	bottom: 0;
+	opacity: .45;
+	min-width: 100%;
+}
+
+#logo-frame {
+	top: 20px;
+	left: 33px;
+	margin: 0;
+	width: 150px;
+}
+
+#nav-menu {
+	background-color: rgba(28, 117, 188, 1);
+	height: 100vh;
+	top: 0;
+	right: 100vw;
+}
+
+#nav-menu * {
+	color: white;
+}

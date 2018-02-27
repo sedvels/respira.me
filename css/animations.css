@@ -1,0 +1,37 @@
+.slide {
+
+}
+
+.slide.in {
+	animation: slidein .6s ease 0s 1 normal forwards;
+	-webkit-animation: slidein .6s ease 0s 1 normal forwards;
+	-moz-animation: slidein .6s ease 0s 1 normal forwards;
+	-o-animation: slidein .6s ease 0s 1 normal forwards;
+}
+
+.slide.out {
+	animation: slideout .6s ease 0s 1 normal forwards;
+	-webkit-animation: slideout .6s ease 0s 1 normal forwards;
+	-moz-animation: slideout .6s ease 0s 1 normal forwards;
+	-o-animation: slideout .6s ease 0s 1 normal forwards;
+}
+
+@keyframes slidein {
+	from {
+		right: -100vw;
+	}
+
+	to {
+		right: 0px;
+	}
+}
+
+@keyframes slideout {
+	from {
+		right: 0px;
+	}
+
+	to {
+		right: -100vw;
+	}
+}
