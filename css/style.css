@@ -37,7 +37,6 @@ body {
 	background-position: bottom;
 	background-size: cover;
 	bottom: 0;
-	opacity: .45;
 	min-width: 100%;
 }
 
@@ -51,7 +50,6 @@ body {
 	background-color: rgba(28, 117, 188, 1);
 	height: 100vh;
 	overflow-y: auto;
-	right: 100vw;
 	z-index: 100;
 	top: 0;
 }
@@ -113,3 +111,27 @@ body {
 #left-aside option {
 	line-height: 1.5;
 }
+
+/********************************************/
+/*********      ANIMACIOCIONES      *********/
+/********************************************/
+
+.slide {
+	right: -100vw;
+	transition: right .6s ease-in-out;
+	-o-transition: right .6s ease-in-out;
+	-moz-transition: right .6s ease-in-out;
+	-webkit-transition: right .6s ease-in-out;
+}
+.slide.in{right: 0px;}
+.slide.out{right: -100vw;}
+
+.rfade {
+	opacity: 0;
+	transition: opacity .6s ease-in-out;
+	-o-transition: opacity .6s ease-in-out;
+	-moz-transition: opacity .6s ease-in-out;
+	-webkit-transition: opacity .6s ease-in-out;
+}
+.rfade.in {opacity: .45;}
+.rfade.out {opacity: 0;}

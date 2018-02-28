@@ -1,37 +1,20 @@
 .slide {
-
+	right: -100vw;
+	transition: right .6s ease-in-out;
+	-o-transition: right .6s ease-in-out;
+	-moz-transition: right .6s ease-in-out;
+	-webkit-transition: right .6s ease-in-out;
 }
+.slide.in{right: 0px;}
+.slide.out{right: -100vw;}
 
-.slide.in {
-	animation: slidein .6s ease 0s 1 normal forwards;
-	-webkit-animation: slidein .6s ease 0s 1 normal forwards;
-	-moz-animation: slidein .6s ease 0s 1 normal forwards;
-	-o-animation: slidein .6s ease 0s 1 normal forwards;
+.rfade {
+	opacity: 0;
+	transition: opacity 2s ease-in-out;
+	-o-transition: opacity 2s ease-in-out;
+	-moz-transition: opacity 2s ease-in-out;
+	-webkit-transition: opacity 2s ease-in-out;
 }
+.rfade.in {opacity: .45;}
+.rfade.out {opacity: 0;}
 
-.slide.out {
-	animation: slideout .6s ease 0s 1 normal forwards;
-	-webkit-animation: slideout .6s ease 0s 1 normal forwards;
-	-moz-animation: slideout .6s ease 0s 1 normal forwards;
-	-o-animation: slideout .6s ease 0s 1 normal forwards;
-}
-
-@keyframes slidein {
-	from {
-		right: -100vw;
-	}
-
-	to {
-		right: 0px;
-	}
-}
-
-@keyframes slideout {
-	from {
-		right: 0px;
-	}
-
-	to {
-		right: -100vw;
-	}
-}

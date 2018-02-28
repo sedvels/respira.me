@@ -9,15 +9,14 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/burger.css">
-	<link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 	<section id="home" class="container-fluid bg-full-image no-padding-h">
 		<header>
-			<div id="city-img" class='h-100 position-absolute fade'></div>
+			<div id="city-img" class='h-100 position-absolute rfade'></div>
 			<nav id="nav-menu" class="position-fixed col-12 col-sm-12 col-md-4 text-center slide">
 				<!-- Collapse button -->
-				<button class="hamburger hamburger--3dxy" type="button">
+				<button id="burger-button" class="hamburger hamburger--3dxy" type="button">
 					<span class="hamburger-box">
 						<span class="hamburger-inner"></span>
 					</span>
@@ -48,11 +47,11 @@
 				<figure id="logo-frame" class="position-relative">
 					<img src="images/logo_ba.png" alt="Respira.me" id="logo" class="w-100">
 				</figure>
-				<div id="city-selector" class="col-sm-12 col-md-5 offset-md-4">
+				<div class="col-sm-12 col-md-5 offset-md-4">
 					<label class="col-sm-11 col-md-7 offset-sm-1 offset-md-1">Selecciona tu ciudad:
-						<select name="city" class="col-12">
+						<select id="city-selector" name="city" class="col-12">
 							<option value="santiago">Santiago</option> 
-							<option value="valdivia" selected="">Valdivia</option>
+							<option value="valdivia">Valdivia</option>
 							<option value="osorno">Osorno</option>
 						</select>
 					</label>
@@ -67,52 +66,8 @@
   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
   crossorigin="anonymous"></script>
-	<script>
-		$$cloudySky = document.getElementById('bg-image')
-		$cityImg = document.getElementById('city-img')
-		
-
-		// setTimeout( () => alert(` ${$cityImg.offsetWidth} ${$cityImg.offsetHeight}`), 5000)
-		
-		function changeCity(data) {
-			if ( (data.city).toLowerCase() == 'santiago' ) {
-				$cityImg.style.backgroundImage = 'url("../images/bg_santiago.png")'
-			}
-
-		    // document.write("City: ", data.city);
-		    // document.write("Country: ", data.country.name);
-		    // document.write("Latitude: ", data.location.latitude);
-		    // document.write("Longitude: ", data.location.longitude)
-		}
-
-		$cityImg.classList.toggle('fade-in')
-
-
-		
-
-
-
-		$cityImg.onload = function () {
-			this.orientation = 'landscape'
-			if (window.matchMedia("(orientation: portrait)").matches) {
-				this.orientation = 'portrait'
-			}
-
-			this.imageRatio = this.width / this.height
-			this.screenRatio = screen.width / screen.height
-
-
-			if ( this.orientation == 'landscape' && (this.imageRatio < this.screenRatio) ) {
-				$cityImg.style.width = "100vw"
-				$cityImg.style.height = 'initial'
-			}
-		  // alert(`pictureW: ${this.width}, pcitureH: ${this.height}, screenX: ${screen.width}, screenY: ${screen.height}`);
-
-
-
-		}
-	</script>
-<script src="http://geoip.nekudo.com/api?callback=changeCity"></script>
+<script type="text/javascript" src="js/function.js"></script>
 <script type="text/javascript" src="js/burger.js"></script>
+<!-- <script src="http://geoip.nekudo.com/api?callback=changeCity"></script> -->
 </body>
 </html>
