@@ -19,6 +19,7 @@ body {
 .button {
 	background-color: rgba(255, 175, 64, 1) /*#FAAF40*/;
 	cursor: pointer;
+	margin: 20px 10px;
 	padding: 2px 20px;
 }
 
@@ -49,12 +50,14 @@ body {
 #nav-menu {
 	background-color: rgba(28, 117, 188, 1);
 	height: 100vh;
-	top: 0;
+	overflow-y: auto;
 	right: 100vw;
 	z-index: 100;
+	top: 0;
 }
 
 .nav-content {
+	overflow-y: auto;
 	top: 90px;
 }
 
@@ -79,6 +82,7 @@ body {
 
 #nav-menu li span:before {
 	content: "\2601";
+	margin-left: -27px;
 	opacity: 0;
 	padding-right: 10px;
 	transition: opacity .25s ease;
@@ -101,8 +105,8 @@ body {
 
 
 #left-aside {
-	padding-left: 30px;
-    padding-top: 30px;
+	padding-left: 3%;
+    padding-top: 2%;
 	position: relative;
 }
 
