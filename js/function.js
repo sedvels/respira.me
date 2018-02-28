@@ -33,7 +33,7 @@ function changeCity(city) {
 	}
 
 	setTimeout( () => {
-		$cityImg.style.backgroundImage = `url("../images/bg_${city.toLowerCase()}.png")`
+		$cityImg.style.backgroundImage = `url("images/bg_${city.toLowerCase()}.png")`
 		$cityImg.classList.add('in')	
 		$citySelector.value = city.toLowerCase()
 	}, 500)
