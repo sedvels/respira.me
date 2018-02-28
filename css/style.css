@@ -16,6 +16,17 @@ body {
 	padding-top: 0;
 }
 
+.button {
+	background-color: rgba(255, 175, 64, 1) /*#FAAF40*/;
+	cursor: pointer;
+	padding: 2px 20px;
+}
+
+.button:hover {
+	transition: background-color .6s ease /*#FAAF40*/;
+	background-color: rgba(255, 175, 64, .8);
+}
+
 .bg-full-image {
 	height: 100vh;
 	overflow: hidden;
@@ -30,10 +41,9 @@ body {
 }
 
 #logo-frame {
-	top: 20px;
-	left: 33px;
-	margin: 0;
-	width: 150px;
+	min-width: 100px;
+   	max-width: 250px;
+    width: 13%;
 }
 
 #nav-menu {
@@ -41,8 +51,61 @@ body {
 	height: 100vh;
 	top: 0;
 	right: 100vw;
+	z-index: 100;
 }
 
-#nav-menu * {
-	color: white;
+.nav-content {
+	top: 90px;
+}
+
+.nav-content h3 {
+	color: rgba(255,255,255,1);
+	line-height: 1.8;
+}
+
+.nav-content ul {
+	border-bottom: solid 1px rgba(255,255,255,1);
+	border-top: solid 1px rgba(255,255,255,1);
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.nav-content ul a {
+	font-size: 1.5em;
+	line-height: 2;
+}
+
+#nav-menu li span:before {
+	content: "\2601";
+	opacity: 0;
+	padding-right: 10px;
+	transition: opacity .25s ease;
+}
+
+#nav-menu a {
+	color: rgba(255,255,255,1);
+	text-decoration: none;
+	width: 100%;
+}
+
+#nav-menu a:hover {
+	color: rgba(255, 175, 64, 1);
+	transition: color .25s ease;
+}
+
+#nav-menu li:hover span:before {
+	opacity: 1;
+}
+
+
+#left-aside {
+	padding-left: 30px;
+    padding-top: 30px;
+	position: relative;
+}
+
+#left-aside option {
+	line-height: 1.5;
 }

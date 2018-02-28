@@ -15,9 +15,6 @@
 	<section id="home" class="container-fluid bg-full-image no-padding-h">
 		<header>
 			<div id="city-img" class='h-100 position-absolute fade'></div>
-			<figure id="logo-frame" class="position-relative">
-				<img src="images/logo_ba.png" alt="Respira.me" id="logo" class="w-100">
-			</figure>
 			<nav id="nav-menu" class="position-fixed col-12 col-sm-12 col-md-4 text-center slide">
 				<!-- Collapse button -->
 				<button class="hamburger hamburger--3dxy" type="button">
@@ -25,31 +22,44 @@
 						<span class="hamburger-inner"></span>
 					</span>
 				</button>
-				<h5 class="col-10 m-auto">Menu</h5>
-				<ul class="col-10 m-auto list-unstyled text-center">
-					<li><a href="">Inicio</a></li>
-					<li><a href="">El Proyecto</a></li>
-					<li><a href="">Registrarse</a></li>
-					<li><a href="">Contacto</a></li>
-					<li><a href="">Redes Sociales</a></li>
-				</ul>
+				<div class="nav-content col-10 m-auto position-relative">
+					<h3 class="col-12 position-static">Menu</h3>
+					<ul class="col-12 position-static list-unstyled text-center">
+						<li><span></span><a href="">Inicio</a></li>
+						<li><span></span><a href="">El Proyecto</a></li>
+						<li><span></span><a href="">Registrarse</a></li>
+						<li><span></span><a href="">Contacto</a></li>
+						<li><span></span><a href="">Redes Sociales</a></li>
+					</ul>
+					<div class="col-12 m-auto position-static">
+						<form action="" method="post">
+							<label class="w-100">
+								<input type="text" class="col-12 rounded" name="username" placeholder="email" required>
+							</label>
+							<label class="w-100">
+								<input type="password" class="col-12  rounded" name="password" placeholder="contraseña" required>
+							</label>
+							<button class="button" type="submit" class="m-auto rounded">Ingresar</button>
+						</form>
+					</div>
+				</div>
 			</nav>
-			<div id="left-aside">
-				<form>
-					<h4>Selecciona tu ciudad:</h4>
-					<select name="city">
-					  <option value="santiago">Santiago</option> 
-					  <option value="valdivia" selected>Valdivia</option>
-					  <option value="osorno">Osorno</option>
-					</select>
-				</form>
+			<div id="left-aside" class="col-12">
+				<figure id="logo-frame" class="position-relative">
+					<img src="images/logo_ba.png" alt="Respira.me" id="logo" class="w-100">
+				</figure>
+				<div id="city-selector" class="col-sm-12 col-md-5 offset-md-4">
+					<label class="col-sm-11 col-md-7 offset-sm-1 offset-md-1">Selecciona tu ciudad:
+						<select name="city" class="col-12">
+							<option value="santiago">Santiago</option> 
+							<option value="valdivia" selected="">Valdivia</option>
+							<option value="osorno">Osorno</option>
+						</select>
+					</label>
+				</div>
 			</div>
 		</header>
 	</section>
-	<aside id="aside">
-		
-	</aside>
-
 	<section class="container-fluid">
 		
 	</section>
