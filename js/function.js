@@ -17,6 +17,11 @@ setTimeout( () => fetch('//geoip.nekudo.com/api')
 		.then( data =>  changeCity(data) )
 		,0)
 
+/**
+	Ejecuta la construcción de gauge indicador de estado del aire.
+**/
+setTimeout( () => initialize() ,0)
+
 
 /**************************************/
 /**********     LISTENERS     *********/
