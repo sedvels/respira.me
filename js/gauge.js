@@ -23,12 +23,20 @@ var mp10 = [
 
 
 var gauges = [];
+var gaugesSize = 280
 		
 function createGauge(name, label, ranges)
 {
+	if ( (400 <= screen.width && 575 > screen.width) ||
+			(400 <= screen.height && 575 > screen.height) ) {
+		gaugesSize = 250
+	} else if ( 400 > screen.width || 400 > screen.height ) {
+		gaugesSize = 200
+	}
+	
 	var config = 
 	{
-		size: 300,
+		size: gaugesSize,
 		label: label,
 		min: undefined != ranges[0].min ? ranges[0].min : 0,
 		max: undefined != ranges[ranges.length - 1].max ? ranges[ranges.length - 1].max : ranges[ranges.length - 1].max = ranges[ranges.length - 1].min * 2,
@@ -36,8 +44,6 @@ function createGauge(name, label, ranges)
 		minorTicks: 5
 	}
 
-	console.log(config.majorTicks)
-	
 	var range = config.max - config.min;
 	ranges.forEach( (object) => {
 		return object.zone = { from: object.min, to: object.max }
