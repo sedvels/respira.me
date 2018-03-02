@@ -3,12 +3,28 @@ const $cityImg = document.getElementById('city-img')
 const $citySelector = document.getElementById('city-selector')
 const $navMenu = document.getElementById('nav-menu')
 const $burgerButton = document.getElementById('burger-button')
+const $divGauge = document.getElementById('gauge')
 
+/*************************************************/
+/**********     LLAMADAS ASINCROINICAS   *********/
+/*************************************************/
+
+/**
+	Ejecuta una consulta a api de geolicalización para obtener ciudad de donde se accede a sitio.
+**/
 setTimeout( () => fetch('//geoip.nekudo.com/api')
 		.then( response =>  response.json() )
 		.then( data =>  changeCity(data) )
 		,0)
-// 
+
+
+/**************************************/
+/**********     LISTENERS     *********/
+/**************************************/
+
+/**
+	Cierra nav de menu, al hacer click fuera de el.
+**/
 $win.addEventListener('click', (event) => {
 	if ( !event.target.classList.value.includes('hamburger')) {
 		if ($navMenu.classList.contains('in')) {
@@ -18,12 +34,22 @@ $win.addEventListener('click', (event) => {
 	}
 })
 
+/**
+	Ejecuta el cambio de ciudad de forma manual por el usuario.
+**/
 $citySelector.addEventListener('change', (event) => {
 	changeCity(event.target.value)
 })
 
+
+/**************************************/
+/**********     FUNCIONES     *********/
+/**************************************/
+
+/**
+	Ejecuta el cambio de background, dependiendo de la ciudad seleccionada.
+**/
 function changeCity(city) {
-	console.log(city)
 	if (typeof city === 'object') {
 		city = getCity(city)
 	}
@@ -39,6 +65,9 @@ function changeCity(city) {
 	}, 500)
 }
 
+/**
+	Retorna la ciudad buscada por geolocalización si existe en nuestro listado. Sino, devuelve por defecto santiago.
+**/
 function getCity(data) {
 	switch (data.city) {
 		case 'valdivia':
@@ -47,7 +76,6 @@ function getCity(data) {
 			return 'santiago'
 	}
 	
-
     // document.write("City: ", data.city);
     // document.write("Country: ", data.country.name);
     // document.write("Latitude: ", data.location.latitude);
@@ -55,28 +83,3 @@ function getCity(data) {
 }
 
 
-
-
-
-
-
-
-// $cityImg.onload = function () {
-// 	this.orientation = 'landscape'
-// 	if (window.matchMedia("(orientation: portrait)").matches) {
-// 		this.orientation = 'portrait'
-// 	}
-
-// 	this.imageRatio = this.width / this.height
-// 	this.screenRatio = screen.width / screen.height
-
-
-// 	if ( this.orientation == 'landscape' && (this.imageRatio < this.screenRatio) ) {
-// 		$cityImg.style.width = "100vw"
-// 		$cityImg.style.height = 'initial'
-// 	}
-//   // alert(`pictureW: ${this.width}, pcitureH: ${this.height}, screenX: ${screen.width}, screenY: ${screen.height}`);
-
-
-
-// }
