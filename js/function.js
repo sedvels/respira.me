@@ -3,7 +3,7 @@ const $cityImg = document.getElementById('city-img')
 const $citySelector = document.getElementById('city-selector')
 const $navMenu = document.getElementById('nav-menu')
 const $burgerButton = document.getElementById('burger-button')
-const $divGauge = document.getElementById('gauge')
+const $divGauge = document.getElementById('gauge-mp10')
 
 /*************************************************/
 /**********     LLAMADAS ASINCROINICAS   *********/

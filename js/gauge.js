@@ -32,12 +32,14 @@ function createGauge(name, label, ranges)
 		label: label,
 		min: undefined != ranges[0].min ? ranges[0].min : 0,
 		max: undefined != ranges[ranges.length - 1].max ? ranges[ranges.length - 1].max : ranges[ranges.length - 1].max = ranges[ranges.length - 1].min * 2,
-		majorTicks: 6,
-		minorTicks: 10
+		majorTicks: 10,
+		minorTicks: 5
 	}
+
+	console.log(config.majorTicks)
 	
 	var range = config.max - config.min;
-	ranges.forEach( (object, index, array) => {
+	ranges.forEach( (object) => {
 		return object.zone = { from: object.min, to: object.max }
 	})
 	config.ranges = ranges
@@ -265,12 +267,13 @@ function Gauge(placeholderName, configuration)
 		
 		this.body.append("svg:path")
 					.style("fill", color)
+					.style("position", "relative")
 					.attr("d", d3.svg.arc()
 						.startAngle(this.valueToRadians(start))
 						.endAngle(this.valueToRadians(end))
 						.innerRadius(0.65 * this.config.radius)
 						.outerRadius(0.85 * this.config.radius))
-					.attr("transform", function() { return "translate(" + self.config.cx + ", " + self.config.cy + ") rotate(270)" });
+					.attr("transform", function() { return "translate(" + self.config.cx + ", " + self.config.cy + ") rotate(270)" })
 	}
 	
 	this.redraw = function(value, transitionDuration)
