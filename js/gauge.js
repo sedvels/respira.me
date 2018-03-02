@@ -1,30 +1,54 @@
 
+var mp10 = [
+		{
+			min: 0,
+			max: 194,
+			color: 'rgb(110, 210, 110)'
+		},
+		{
+			min: 195,
+			max: 239,
+			color: 'rgb(255, 245, 65)'
+		},
+		{
+			min: 240,
+			max: 329,
+			color: 'rgb(255, 170, 65)'
+		},
+		{
+			min: 330,
+			color: 'rgb(220, 57, 18)'
+		}
+	]
+
+
 var gauges = [];
 		
-function createGauge(name, label, min, max, edges = [])
+function createGauge(name, label, ranges)
 {
 	var config = 
 	{
 		size: 300,
 		label: label,
-		min: undefined != min ? min : 0,
-		max: undefined != max ? max : 100,
+		min: undefined != ranges[0].min ? ranges[0].min : 0,
+		max: undefined != ranges[ranges.length - 1].max ? ranges[ranges.length - 1].max : ranges[ranges.length - 1].max = ranges[ranges.length - 1].min * 2,
+		majorTicks: 6,
 		minorTicks: 10
 	}
 	
 	var range = config.max - config.min;
-	config.greenZones = [{ from: config.min + range*0, to: config.min + range*0.25 }];
-	config.yellowZones = [{ from: config.min + range*0.25, to: config.min + range*0.50 }];
-	config.orangeZones = [{ from: config.min + range*0.50, to: config.min + range*0.75 }];
-	config.redZones = [{ from: config.min + range*0.75, to: config.max }];
-	
+	ranges.forEach( (object, index, array) => {
+		return object.zone = { from: object.min, to: object.max }
+	})
+	config.ranges = ranges
+
 	gauges[name] = new Gauge(`gauge-${name}`, config);
 	gauges[name].render();
 }
 
 function createGauges()
 {
-	createGauge("mp10", "MP10");
+	createGauge("mp10", "MP10", mp10);
 	// createGauge("cpu", "CPU");
 	// createGauge("network", "Network");
 	//createGauge("test", "Test", -50, 50 );
@@ -64,7 +88,7 @@ function Gauge(placeholderName, configuration)
 		
 		this.config.size = this.config.size * 0.9;
 		
-		this.config.raduis = this.config.size * 0.97 / 2;
+		this.config.radius = this.config.size * 0.97 / 2;
 		this.config.cx = this.config.size / 2;
 		this.config.cy = this.config.size / 2;
 		
@@ -74,11 +98,6 @@ function Gauge(placeholderName, configuration)
 		
 		this.config.majorTicks = configuration.majorTicks || 5;
 		this.config.minorTicks = configuration.minorTicks || 2;
-		
-		this.config.greenColor 	= configuration.greenColor || 'rgb(110, 210, 110)';
-		this.config.yellowColor = configuration.yellowColor || 'rgb(255, 245, 65)';
-		this.config.orangeColor = configuration.orangeColor || 'rgb(255, 170, 65)' 
-		this.config.redColor 	= configuration.redColor || "#DC3912";
 		
 		this.config.transitionDuration = configuration.transitionDuration || 500;
 	}
@@ -94,7 +113,7 @@ function Gauge(placeholderName, configuration)
 		this.body.append("svg:circle")
 					.attr("cx", this.config.cx)
 					.attr("cy", this.config.cy)
-					.attr("r", this.config.raduis)
+					.attr("r", this.config.radius)
 					.style("fill", "rgb(176, 176, 176)")
 					.style("stroke", "rgb(112, 112, 112)")
 					.style("stroke-width", "0.5px");
@@ -102,29 +121,14 @@ function Gauge(placeholderName, configuration)
 		this.body.append("svg:circle")
 					.attr("cx", this.config.cx)
 					.attr("cy", this.config.cy)
-					.attr("r", 0.9 * this.config.raduis)
+					.attr("r", 0.9 * this.config.radius)
 					.style("fill", "rgb(238, 238, 238)")
 					.style("stroke", "rgb(207, 207, 207)")
 					.style("stroke-width", "2px");
 					
-		for (var index in this.config.greenZones)
-		{
-			this.drawBand(this.config.greenZones[index].from, this.config.greenZones[index].to, self.config.greenColor);
-		}
 		
-		for (var index in this.config.yellowZones)
-		{
-			this.drawBand(this.config.yellowZones[index].from, this.config.yellowZones[index].to, self.config.yellowColor);
-		}
-		
-		for (var index in this.config.orangeZones)
-		{
-			this.drawBand(this.config.orangeZones[index].from, this.config.orangeZones[index].to, self.config.orangeColor);
-		}
-		
-		for (var index in this.config.redZones)
-		{
-			this.drawBand(this.config.redZones[index].from, this.config.redZones[index].to, self.config.redColor);
+		for (var index in this.config.ranges) {
+			this.drawBand(this.config.ranges[index].zone.from, this.config.ranges[index].zone.to, this.config.ranges[index].color);
 		}
 		
 		if (undefined != this.config.label)
@@ -210,7 +214,7 @@ function Gauge(placeholderName, configuration)
 		pointerContainer.append("svg:circle")
 							.attr("cx", this.config.cx)
 							.attr("cy", this.config.cy)
-							.attr("r", 0.12 * this.config.raduis)
+							.attr("r", 0.12 * this.config.radius)
 							.style("fill", "#4684EE")
 							.style("stroke", "#666")
 							.style("opacity", 1);
@@ -264,8 +268,8 @@ function Gauge(placeholderName, configuration)
 					.attr("d", d3.svg.arc()
 						.startAngle(this.valueToRadians(start))
 						.endAngle(this.valueToRadians(end))
-						.innerRadius(0.65 * this.config.raduis)
-						.outerRadius(0.85 * this.config.raduis))
+						.innerRadius(0.65 * this.config.radius)
+						.outerRadius(0.85 * this.config.radius))
 					.attr("transform", function() { return "translate(" + self.config.cx + ", " + self.config.cy + ") rotate(270)" });
 	}
 	
@@ -312,8 +316,8 @@ function Gauge(placeholderName, configuration)
 	
 	this.valueToPoint = function(value, factor)
 	{
-		return { 	x: this.config.cx - this.config.raduis * factor * Math.cos(this.valueToRadians(value)),
-					y: this.config.cy - this.config.raduis * factor * Math.sin(this.valueToRadians(value)) 		};
+		return { 	x: this.config.cx - this.config.radius * factor * Math.cos(this.valueToRadians(value)),
+					y: this.config.cy - this.config.radius * factor * Math.sin(this.valueToRadians(value)) 		};
 	}
 	
 	// initialization
